@@ -24,8 +24,8 @@ RUN export ANDROID_HOME="$HOME/android-sdk-linux"
 RUN ./cmdline-tools/bin/sdkmanager --sdk_root="$ANDROID_HOME" platform-tools "build-tools;30.0.3"
 
 #Create directories
-RUN mkdir -p /usr/share/nginx/www/fdroid
-WORKDIR /usr/share/nginx/www/fdroid
+RUN mkdir -p /usr/share/fdroid
+WORKDIR /usr/share/fdroid
 
 #Init
 RUN export ANDROID_HOME="$HOME/android-sdk-linux" \ 
@@ -37,9 +37,11 @@ COPY ./logo.png .
 #Create folders
 RUN mkdir repo
 RUN mkdir unsigned
+
+#Need to expose
 RUN mkdir private
 RUN mkdir metadata
-RUN mkdir /usr/APK
+RUN mkdir /usr/src/APK
 
 #Copy nginx config
 COPY nginx.conf /etc/nginx/

@@ -1,10 +1,14 @@
 #Clear repo folder
-cd /usr/share/nginx/www/fdroid/repo
+cd /usr/share/fdroid/repo
 rm * -r
-cp /usr/APK/*.apk /usr/share/nginx/www/fdroid/unsigned
+
+#Copy APK
+cp /usr/src/APK/*.apk /usr/share/fdroid/unsigned
+#Copy config file
+cp /usr/share/fdroid/private/config.yml /usr/share/fdroid
 
 #Go to fdroid folder
-cd /usr/share/nginx/www/fdroid
+cd /usr/share/fdroid
 
 #Sign APK
 fdroid publish --verbose
@@ -13,7 +17,7 @@ fdroid publish --verbose
 fdroid update --create-metadata
 
 #Give acces to repo folder
-chmod -R 755 /usr/share/nginx/www/fdroid/repo
+chmod -R 755 /usr/share/fdroid/repo
 
 #Start nginx server
 /etc/init.d/nginx start
